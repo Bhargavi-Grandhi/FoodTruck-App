@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Location Input Example</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<h1>Enter Your Location</h1>
+	<form id="locationForm">
+		<label for="locationName">Location Name:</label>
+		<input type="text" id="locationName" name="locationName"><br><br>
+		<button type="submit">Submit</button>
+	</form>
+
+	<script>
+		// Get the location name from the input field and submit the form
+		document.getElementById("locationForm").addEventListener("submit", function(event) {
+			event.preventDefault();
+			var locationName = document.getElementById("locationName").value;
+			// Submit the form or do something else with the location name
+			console.log("Location Name:", locationName);
+		});
+	</script>
+</body>
+</html>
