@@ -1,5 +1,8 @@
 # FoodTruck-App
 
+XAMPP Install :
+https://www.apachefriends.org/download.html
+Link - https://sourceforge.net/projects/xampp/files/XAMPP%20Mac%20OS%20X/8.0.25/xampp-osx-8.0.25-0-installer.dmg
 PHP Download and install:
 https://windows.php.net/downloads/releases/php-8.2.4-Win32-vs16-x64.zip
 
