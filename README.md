@@ -20,7 +20,7 @@ To get location Points of given location :  http://api.openweathermap.org/geo/1.
 To get Data set provided by San Francisco  : http://data.sfgov.org/resource/rqzj-sfat.json
 
 Project : Dispalys Food Truck details within 10miles range of given city in San Francisco.
-https://localhost:<port>/EnterCity.html
+http://localhost:<port>/EnterCity.html
 
 Web API:
 http://localhost/api.php?locationname=Sausalito
