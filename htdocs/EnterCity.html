@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Location Input Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Style the form container */
+        .form-container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Style the input fields */
+        input[type=text],
+        input[type=email],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        /* Style the submit button */
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        #myList {
+            height: 300px;
+            margin: auto;
+            width: 40%;
+            border: 1px solid gray;
+            padding: 10px;
+            text-align: center;
+            overflow: scroll;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <h1 style="text-align:center">Food Trucks Finder</h1>
+    <div class="form-container">
+
+        <label for="locationName">City Name:</label>
+        <input name="locationName" id="locationName">
+        <input type="submit" value="submit" onclick="sendCity()">
+    </div>
+    <h1 style="text-align:center">Food Truck Locations</h1>
+    <div id="myList">
+        <!-- The list items will be added here dynamically using JavaScript -->
+    </div>
+
+    <script>
+        function sendCity() {
+            $.ajax({
+                url: 'api.php?locationname=' + document.getElementById("locationName").value,
+                method: 'GET',
+                success: function (data) {
+                     
+                    let list = document.getElementById("myList");
+                    list.innerHTML = ''
+                    const items = Object.values(data);
+                    console.log('data',data)
+                    if (data && Object.values(data).length > 0 && Object.keys(data).indexOf('error') === -1) {
+                        
+                        for (let i = 0; i < items.length; i++) {
+                            // Create a new list item element
+                            const li = document.createElement("div");
+
+                            // Create the HTML content for the list item
+                            const content = `
+                                <h2>${items[i].name}</h2>
+                                <p>${items[i].address}</p>
+                                <p>${items[i].distance} miles</p>
+                                `;
+
+                            // Set the HTML content of the list item
+                            li.innerHTML = content;
+
+                            // Append the list item to the unordered list
+                            list.appendChild(li);
+                        }
+                    }else{
+                        list.innerHTML = data.error
+                    }
+                    // Get the unordered list element by ID
+
+                },
+                error: function (xhr, status, error) {
+
+                    let list = document.getElementById("myList")
+                    list.innerHTML = error
+                    console.log(error);
+                }
+            });
+        }
+
+    </script>
+</body>
+
+</html>
